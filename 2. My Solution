@@ -1,0 +1,42 @@
+#count the freq of each gender (Male & Female) then take the max freq gender using idxmax
+top_gender = df['sex'].value_counts().idxmax()
+#count the freq of each country then take the max freq country using idxmax
+top_country = df['birth_country'].value_counts().idxmax()
+
+#create decade column using year column
+df['decade'] = df['year']//10 * 10
+#filter by usa country
+usa_born = df[(df['birth_country']=='United States of America')]
+#take the freq of decades for total data
+total_decade_counts = df['decade'].value_counts()
+#take the freq of decades for filterd by usa data
+usa_decade_counts = usa_born['decade'].value_counts()
+#take the ratio of usa decade
+ratio = usa_decade_counts / total_decade_counts
+#exctract the max deacde ratio using idxmax
+max_decade_usa = ratio.idxmax()
+
+#filter gender to take female only
+female_filter = df[df['sex']=='Female']
+
+total_decade_counts = df['decade'].value_counts()
+female_decade_counts = female_filter['decade'].value_counts()
+proportion = female_decade_counts / total_decade_counts
+decade_max_proportion = proportion.idxmax()
+female_max_proportion = female_filter[female_filter['decade']==decade_max_proportion]
+nobel_prize_cat = female_max_proportion['category'].value_counts()
+nobel_prize_cat_total = df['category'].value_counts()
+cat_proportion = nobel_prize_cat/nobel_prize_cat_total
+cat_max_proportion = cat_proportion.idxmax()
+max_female_dict = {decade_max_proportion:cat_max_proportion}
+print(max_female_dict)
+
+ordered_women_winner = female_filter.sort_values('year', ascending=False)
+full_name_col = ordered_women_winner['full_name']
+full_cat_col = ordered_women_winner['category']
+first_woman_name = full_name_col.iloc[-1]
+first_woman_category = full_cat_col.iloc[-1]
+
+freq_names = df['full_name'].value_counts()
+more_than_one = freq_names[freq_names > 1]
+repeat_list = list(more_than_one.index)
