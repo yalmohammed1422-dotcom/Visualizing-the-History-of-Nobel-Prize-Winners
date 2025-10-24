@@ -55,6 +55,7 @@ top_gender = df['sex'].value_counts().idxmax()
 - Pie chart showing gender distribution with percentages
 <img width="1496" height="1580" alt="image" src="https://github.com/user-attachments/assets/78715641-b4e5-4812-ad76-4ab919de1de4" />
 
+
 - Bar chart with count labels
 <img width="1982" height="1178" alt="image" src="https://github.com/user-attachments/assets/f2ad752e-5410-4b92-a1d6-7d528b8b81f7" />
 
