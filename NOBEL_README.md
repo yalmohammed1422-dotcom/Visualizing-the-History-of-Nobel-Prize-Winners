@@ -30,10 +30,6 @@ matplotlib
 numpy
 ```
 
-Install dependencies:
-```bash
-pip install pandas matplotlib numpy
-```
 
 ## Dataset
 
@@ -57,7 +53,10 @@ top_gender = df['sex'].value_counts().idxmax()
 
 **Visualizations**:
 - Pie chart showing gender distribution with percentages
+<img width="1496" height="1580" alt="image" src="https://github.com/user-attachments/assets/78715641-b4e5-4812-ad76-4ab919de1de4" />
+
 - Bar chart with count labels
+<img width="1982" height="1178" alt="image" src="https://github.com/user-attachments/assets/f2ad752e-5410-4b92-a1d6-7d528b8b81f7" />
 
 **Key Insight**: Reveals historical gender imbalance in Nobel Prize awards
 
@@ -74,6 +73,7 @@ top_country = df['birth_country'].value_counts().idxmax()
 
 **Visualizations**:
 - Horizontal bar chart of top 10 countries (highlighted winner)
+<img width="2780" height="1579" alt="image" src="https://github.com/user-attachments/assets/fbbc193c-2dee-49a3-a2d4-cb48647ddc69" />
 
 **Key Insight**: Shows geographic concentration of Nobel Prize winners
 
@@ -101,7 +101,10 @@ max_decade_usa = ratio.idxmax()
 
 **Visualizations**:
 - Bar chart showing USA proportion by decade (highlighted max)
+<img width="2783" height="1379" alt="image" src="https://github.com/user-attachments/assets/db04f784-f17a-46b3-93c7-88dbe9f34ba4" />
+
 - Comparison of USA vs total winners by decade
+<img width="2782" height="1379" alt="image" src="https://github.com/user-attachments/assets/a05a43c4-3111-4d82-8ba2-da3741fe8979" />
 
 **Key Insight**: Tracks the rise of USA scientific dominance
 
@@ -130,8 +133,13 @@ max_female_dict = {decade_max_proportion: cat_max_proportion}
 
 **Visualizations**:
 - Female proportion by decade (highlighted max)
+<img width="2783" height="1379" alt="image" src="https://github.com/user-attachments/assets/7b48087b-d565-4241-8ec8-4351554feda7" />
+
 - Female winners by category
+<img width="2381" height="1379" alt="image" src="https://github.com/user-attachments/assets/5b35ea4d-b081-4aa0-9b54-63b39e0c845c" />
+
 - Gender comparison across categories
+<img width="2782" height="1379" alt="image" src="https://github.com/user-attachments/assets/782de89d-6f61-443c-91e9-95e60c2dc74d" />
 
 **Key Insight**: Shows progress (or lack thereof) in gender equality over time
 
@@ -152,6 +160,7 @@ first_woman_category = ordered_women_winner['category'].iloc[-1]
 
 **Visualizations**:
 - Timeline of female winners with first woman marked
+<img width="2781" height="1380" alt="image" src="https://github.com/user-attachments/assets/88b55f82-f56b-4713-95e1-354d4dfae5d5" />
 
 **Key Insight**: Historical milestone in Nobel Prize history
 
@@ -172,6 +181,7 @@ repeat_list = list(more_than_one.index)
 
 **Visualizations**:
 - Horizontal bar chart of repeat winners
+<img width="2375" height="1178" alt="image" src="https://github.com/user-attachments/assets/b8c840bf-513e-4fae-9e80-8b8bc805eb59" />
 
 **Key Insight**: Extremely rare achievement highlighting exceptional contributions
 
@@ -193,114 +203,8 @@ The project includes **11 matplotlib visualizations**:
 10. **Repeat Winners** - Rare individuals with multiple prizes
 11. **Comprehensive Dashboard** - 4-panel overview (decade, category, country, gender)
 
-## Usage
 
-```python
-import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
 
-# Load your data
-df = pd.read_csv('nobel_prize_data.csv')
-
-# Run the analysis script
-# [Execute the analysis code]
-```
-
-## Sample Output
-
-```
-Most common gender among Nobel Prize winners: Male
-Gender distribution:
-Male      XXX
-Female     XX
-
-Country with most Nobel Prize winners: United States of America
-
-Decade with highest proportion of USA-born winners: 2000s
-Proportion: XX.XX%
-
-Decade with highest female proportion: 2010s
-Category with highest female proportion in that decade: Literature
-Result dictionary: {2010: 'Literature'}
-
-First woman to win Nobel Prize: Marie Curie
-Category: Physics
-
-Number of repeat winners: X
-Repeat winners: ['Marie Curie', 'John Bardeen', ...]
-
-==================================================
-Analysis Complete!
-==================================================
-```
-
-## Key Findings Template
-
-Based on the analysis, you can report:
-- **Gender Gap**: X% male vs Y% female laureates
-- **Geographic Concentration**: Top country is [Country] with X winners
-- **USA Peak**: Highest USA proportion in the [decade]s at X%
-- **Female Progress**: Highest female representation in [decade]s
-- **Pioneer**: First woman winner was [Name] in [Year] for [Category]
-- **Elite Club**: X individuals have won multiple Nobel Prizes
-
-## Insights & Interpretations
-
-- **Historical Gender Imbalance**: The data reveals significant underrepresentation of women
-- **Geographic Patterns**: Certain countries dominate due to research infrastructure
-- **Temporal Trends**: Winner demographics shift with global power dynamics
-- **Category Variations**: Gender distribution varies significantly by field
-- **Recent Progress**: Modern decades show improvement in diversity
-
-## Code Improvements Implemented
-
-- ✅ **11 professional visualizations** using matplotlib only
-- ✅ **Color-coded highlights** for maximum values and key insights
-- ✅ **Comprehensive labels** on all charts with values
-- ✅ **Trend analysis** with line plots and filled areas
-- ✅ **Comparative visualizations** for context
-- ✅ **Dashboard view** for holistic understanding
-- ✅ **Print statements** for all key findings
-
-## Potential Further Analysis
-
-- Analyze age at time of award
-- Study collaboration patterns (shared prizes)
-- Examine time lag between discovery and recognition
-- Investigate institutional affiliations
-- Analyze prize motivation text for patterns
-- Study longevity of laureates
-- Compare founding vs recent categories
-
-## Alternative Implementation
-
-For more efficient decade analysis:
-```python
-# Vectorized decade creation
-df['decade'] = (df['year'] // 10) * 10
-
-# Direct groupby for proportions
-proportions = df.groupby(['decade', 'sex']).size().unstack(fill_value=0)
-proportions = proportions.div(proportions.sum(axis=1), axis=0)
-```
-
-## File Structure
-
-```
-project/
-│
-├── nobel_prize_analysis_matplotlib.py    # Main analysis script
-├── README.md                             # This file
-└── nobel_prize_data.csv                  # Your dataset (not included)
-```
-
-## Data Sources
-
-Nobel Prize data can be obtained from:
-- Official Nobel Prize API: https://api.nobelprize.org/
-- Kaggle datasets
-- Nobel Prize official website
 
 ## Contributing
 
@@ -311,18 +215,7 @@ Contributions welcome! Areas for enhancement:
 - Geographic mapping
 - Network analysis of collaborations
 
-## License
 
-This project is open source and available under the MIT License.
 
-## Author
-
-Nobel Prize Analysis Project
-
----
 
 *A data-driven exploration of Nobel Prize winners spanning over a century of scientific, literary, and humanitarian achievement.*
-
-## Acknowledgments
-
-Data courtesy of the Nobel Prize organization and public datasets. This analysis is for educational purposes.
